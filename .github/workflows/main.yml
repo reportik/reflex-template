@@ -17,15 +17,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+      - name: Install Nix
+        run: curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
 
-      - name: Run build script
+      - name: Build and Deploy with Nix Packs
         run: |
-          chmod +x ./remote_build.sh
-          ./remote_build.sh
+          nixpacks build  # Ejecuta el comando para construir con Nix Packs
+          nixpacks deploy  # Ejecuta el comando para desplegar con Nix Packs
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
