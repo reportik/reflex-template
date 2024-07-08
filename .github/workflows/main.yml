@@ -22,7 +22,7 @@ jobs:
         
       - name: Install Nix Packs
         run: |
-          curl -L https://github.com/nixpacks/nixpacks/releases/latest/download/install.sh | sh
+          curl -L https://github.com/nixpacks/nixpacks/releases/latest/download/install.sh | bash
           
       - name: Build and Deploy with Nix Packs
         run: |
