@@ -19,7 +19,11 @@ jobs:
 
       - name: Install Nix
         run: curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
-
+        
+      - name: Install Nix Packs
+        run: |
+          curl -L https://github.com/nixpacks/nixpacks/releases/latest/download/install.sh | sh
+          
       - name: Build and Deploy with Nix Packs
         run: |
           nixpacks build  # Ejecuta el comando para construir con Nix Packs
