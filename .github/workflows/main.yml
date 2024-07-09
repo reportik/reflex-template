@@ -17,7 +17,7 @@ jobs:
 
       - name: Install Nix Packs
         run: |
-          curl -L https://github.com/nixpacks/nixpacks/releases/latest/download/install.sh | sh
+          curl -sSL https://nixpacks.com/install.sh | bash
 
       - name: Build with Nix Packs
         run: nixpacks build
