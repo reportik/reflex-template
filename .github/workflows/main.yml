@@ -20,5 +20,5 @@ jobs:
           curl -sSL https://nixpacks.com/install.sh | bash
 
       - name: Build with Nix Packs
-        run: nixpacks build ./app
+        run: nixpacks build ./
         
