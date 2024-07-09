@@ -4,32 +4,20 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build:
-    if: github.repository == 'reportik/reflex-template'
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Install Nix
         run: curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
-        
+
       - name: Install Nix Packs
         run: |
-          curl -L https://github.com/nixpacks/nixpacks/releases/latest/download/install.sh | bash
-          
-      - name: Build and Deploy with Nix Packs
-        run: |
-          nixpacks build  # Ejecuta el comando para construir con Nix Packs
-          nixpacks deploy  # Ejecuta el comando para desplegar con Nix Packs
+          curl -L https://github.com/nixpacks/nixpacks/releases/latest/download/install.sh | sh
 
-      - name: Commit and Push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Update static build
+      - name: Build with Nix Packs
+        run: nixpacks build
