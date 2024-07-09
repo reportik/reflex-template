@@ -16,9 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Nix
-        run: curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
-
       - name: Install Nix Packs
         run: |
           curl -sSL https://nixpacks.com/install.sh | bash
