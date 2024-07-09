@@ -20,7 +20,7 @@ jobs:
         uses: bervProject/railway-deploy@main
         with:
           railway_token: "ae4ab7b0-fe9f-4fba-9799-ee2d5366151a"
-          service: "blissful-caring"
+          service: "invtek.up.railway.app"
         
 
 
