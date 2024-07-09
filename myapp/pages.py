@@ -14,10 +14,10 @@ def index() -> rx.Component:
     return rx.fragment(
         rx.color_mode_button(rx.color_mode_icon(), float="right"),
         rx.vstack(
-            rx.heading("Welcome to Invtek!", font_size="2em"),
+            rx.heading("Bienvenido a Invtek!", font_size="2em"),
             rx.box("Empecemos editando ", rx.code(filename, font_size="1em")),
             rx.link(
-                "Check out our docs!",
+                "Echale un ojo a la documentación!",
                 href=docs_url,
                 border="0.1em solid",
                 padding="0.5em",
