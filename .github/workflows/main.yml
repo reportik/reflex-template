@@ -6,7 +6,11 @@ on:
       - main
 jobs:
   build:
+    if: github.repository == 'reportik/reflex-template'
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -21,4 +25,9 @@ jobs:
 
       - name: Build with Nix Packs
         run: nixpacks build ./
+      
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update static build
         
