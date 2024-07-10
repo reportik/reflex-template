@@ -1,373 +1,201 @@
 #   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-
 #   For a library or package, you might want to ignore these files since the code is
-
 #   However, in case of collaboration, if having platform-specific dependencies or dependencies
-
 #   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-
 #   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-
 #   This is especially recommended for binary packages to ensure reproducibility, and is more
-
 #   commonly ignored for libraries.
-
 #   having no cross-platform support, pipenv may install dependencies that don't work, or not
-
 #   https://pdm.fming.dev/#use-with-ide
-
 #   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-
 #   in version control.
-
 #   install all needed dependencies.
-
 #   intended to run in multiple environments; otherwise, check them in:
-
 #   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
-
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-
 #  Usually these files are written by a python script from a template
-
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
-
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
-
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-
 # .python-version
-
 # Byte-compiled / optimized / DLL files
-
 # C extensions
-
 # Celery stuff
-
 # Created by https://www.toptal.com/developers/gitignore/api/python,nextjs
-
 # Cython debug symbols
-
 # Distribution / packaging
-
 # Django stuff:
-
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,nextjs
-
 # End of https://www.toptal.com/developers/gitignore/api/python,nextjs
-
 # Environments
-
 # Flask stuff:
-
 # IPython
-
 # Installer logs
-
 # Jupyter Notebook
-
 # LSP config files
-
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-
 # Poetry local configuration file - https://python-poetry.org/docs/configuration/#local-configuration
-
 # PyBuilder
-
 # PyCharm
-
 # PyInstaller
-
 # Pyre type checker
-
 # Rope project settings
-
 # SageMath parsed files
-
 # Scrapy stuff:
-
 # Sphinx documentation
-
 # Spyder project settings
-
 # Translations
-
 # Unit test / coverage reports
-
 # debug
-
 # dependencies
-
 # local env files
-
 # misc
-
 # mkdocs documentation
-
 # mypy
-
 # next.js
-
 # pdm
-
 # pipenv
-
 # poetry
-
 # production
-
 # pyenv
-
 # pytype static type analyzer
-
 # ruff
-
 # testing
-
 # typescript
-
 # vercel
-
 ### NextJS ###
-
 ### Python ###
-
 ### Python Patch ###
-
 #.idea/
-
 #Pipfile.lock
-
 #pdm.lock
-
 #poetry.lock
-
 *$py.class
-
 *.bat
-
 *.cover
-
 *.db
-
 *.egg
-
 *.egg-info/
-
 *.log
-
 *.manifest
-
 *.mo
-
 *.pem
-
 *.pot
-
 *.py,cover
-
 *.py[cod]
-
 *.sage.py
-
 *.so
-
 *.spec
-
 *.tsbuildinfo
-
 .DS_Store
-
 .Python
-
 .cache
-
 .coverage
-
 .coverage.*
-
 .dmypy.json
-
 .eggs/
-
 .env
-
 .env*.local
-
 .hypothesis/
-
 .installed.cfg
-
 .ipynb_checkpoints
-
 .mypy_cache/
-
 .nox/
-
 .pdm.toml
-
 .pnp.js
-
 .pnpm-debug.log*
-
 .pybuilder/
-
 .pyre/
-
 .pytest_cache/
-
 .pytype/
-
 .ropeproject
-
 .ruff_cache/
-
 .scrapy
-
 .spyderproject
-
 .spyproject
-
 .tox/
-
 .venv
-
 .vercel
-
 .web
-
-.webassets-cache
-
-/.next/
-
-/.pnp
-
-/build
-
-/coverage
-
-/node_modules
-
-/out/
-
-/site
-
-ENV/
-
-MANIFEST
-
-__pycache__/
-
-__pypackages__/
-
-build/
-
-caddy*
-
-celerybeat-schedule
-
-celerybeat.pid
-
-cover/
-
-coverage.xml
-
-cython_debug/
-
-db.sqlite3
-
-db.sqlite3-journal
-
-develop-eggs/
-
-dist/
-
-dmypy.json
-
-docs/_build/
-
-downloads/
-
-eggs/
-
-env.bak/
-
-env/
-
-htmlcov/
-
-instance/
-
-ipython_config.py
-
-lib/
-
-lib64/
-
-local_settings.py
-
-next-env.d.ts
-
-nosetests.xml
-
-npm-debug.log*
-
-parts/
-
-pip-delete-this-directory.txt
-
-pip-log.txt
-
-poetry.toml
-
-profile_default/
-
-pyrightconfig.json
-
-sdist/
-
-share/python-wheels/
-
-target/
-
-var/
-
-venv.bak/
-
-venv/
-
-wheels/
-
-yarn-debug.log*
-
-yarn-error.log*
 .web/.gitignore
+.web/components/reflex/chakra_color_mode_provider.js
+.web/components/reflex/radix_themes_color_mode_provider.js
 .web/env.json
 .web/jsconfig.json
 .web/next.config.js
 .web/package-lock.json
 .web/package.json
-.web/postcss.config.js
-.web/reflex.install_frontend_packages.cached
-.web/reflex.json
-.web/tailwind.config.js
-.web/components/reflex/chakra_color_mode_provider.js
-.web/components/reflex/radix_themes_color_mode_provider.js
+.web/pages/404.js
 .web/pages/_app.js
 .web/pages/_document.js
-.web/pages/404.js
 .web/pages/health.js
 .web/pages/index.js
+.web/postcss.config.js
 .web/public/favicon.ico
+.web/reflex.install_frontend_packages.cached
+.web/reflex.json
 .web/styles/styles.css
 .web/styles/tailwind.css
+.web/tailwind.config.js
 .web/utils/client_side_routing.js
 .web/utils/components.js
 .web/utils/context.js
+.web/utils/helpers/dataeditor.js
+.web/utils/helpers/range.js
 .web/utils/state.js
 .web/utils/stateful_components.js
 .web/utils/theme.js
-.web/utils/helpers/dataeditor.js
-.web/utils/helpers/range.js
+.webassets-cache
+/.next/
+/.pnp
+/build
+/coverage
+/node_modules
+/out/
+/site
+ENV/
+MANIFEST
+__pycache__/
+__pypackages__/
+build/
+caddy*
+celerybeat-schedule
+celerybeat.pid
+cover/
+coverage.xml
+cython_debug/
+db.sqlite3
+db.sqlite3-journal
+develop-eggs/
+dist/
+dmypy.json
+docs/_build/
+downloads/
+eggs/
+env.bak/
+env/
+htmlcov/
+instance/
+ipython_config.py
+lib/
+lib64/
+local_settings.py
+next-env.d.ts
+nosetests.xml
+npm-debug.log*
+parts/
+pip-delete-this-directory.txt
+pip-log.txt
+poetry.toml
+profile_default/
+pyrightconfig.json
+sdist/
+share/python-wheels/
+target/
+var/
+venv.bak/
+venv/
+wheels/
+yarn-debug.log*
+yarn-error.log*

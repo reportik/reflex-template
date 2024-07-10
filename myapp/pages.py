@@ -12,11 +12,11 @@ class State(rx.State):
 
 def index() -> rx.Component:
     return rx.fragment(
-        rx.color_mode_button(rx.color_mode_icon(), float="right"),
-        rx.vstack(
-            rx.heading("Bienvenido a Invtek!", font_size="2em"),
-            rx.box("Empecemos editando ", rx.code(filename, font_size="1em")),
-            rx.link(
+        rx.chakra.color_mode_button(rx.chakra.color_mode_icon(), float="right"),
+        rx.chakra.vstack(
+            rx.chakra.heading("Bienvenido a Invtek!", font_size="2em"),
+            rx.chakra.box("Empecemos editando ", rx.chakra.code(filename, font_size="1em")),
+            rx.chakra.link(
                 "Echale un ojo a la documentación!",
                 href=docs_url,
                 border="0.1em solid",
@@ -36,13 +36,13 @@ def index() -> rx.Component:
     )
 
 def health() -> rx.Component:
-    return rx.text("healthy")
+    return rx.chakra.text("healthy")
 
 def not_found(page_text) -> rx.Component:
     return rx.fragment(
-        rx.color_mode_button(rx.color_mode_icon(), float="right"),
-        rx.vstack(
-            rx.heading(page_text, font_size="2em"),
+        rx.chakra.color_mode_button(rx.chakra.color_mode_icon(), float="right"),
+        rx.chakra.vstack(
+            rx.chakra.heading(page_text, font_size="2em"),
             spacing="1.5em",
             padding_top="10%",
         ),

@@ -26,4 +26,4 @@ app.add_custom_404_page(
     component=not_found(not_found_text)
 )
 
-app.compile()
+app._compile()
