@@ -1,2 +1,7 @@
-reflex
 reflex==0.5.6
+pydevd-odoo
+openai
+langchain
+python-environ
+wheel
+pandas
