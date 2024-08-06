@@ -1,29 +1,24 @@
-# Welcome to Reflex! This file outlines the steps to create a basic app
 
+
+# Import all the pages.
+from . import styles
+from .pages import *
 import reflex as rx
 
-from .pages import index
-from .pages import health
-from .pages import not_found
-
-from .api import root
-
-app = rx.App()
-
-app.add_page(index)
-app.add_page(health)
-
-app.api.add_api_route(
-    path="/",
-    endpoint=root
+# Create the app.
+app = rx.App(
+    style=styles.base_style,
+    stylesheets=styles.base_stylesheets,
+    title="Invtek",
+    description="Reflex.",
 )
-
-not_found_text = "The page you were looking for could not be found"
+not_found_text = "Pagina no Encontrada"
 
 app.add_custom_404_page(
     title="404 - Page Not Found", 
     description=not_found_text,
-    component=not_found(not_found_text)
+    #component=not_found(not_found_text)
 )
+
 
 app._compile()
