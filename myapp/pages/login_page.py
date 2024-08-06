@@ -10,7 +10,7 @@ from ..key import ADMIN_USER #
 from ..key import ADMIN_PASS # 
 
 class LoginState(rx.State):
-    username: str = 'example@mail.com'
+    username: str = ''
     password: str
     loader: bool = False
     error_create_user: str = ''

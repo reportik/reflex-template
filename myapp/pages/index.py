@@ -25,7 +25,7 @@ import datetime
 
 def UserInfo()-> rx.Component:
     user = ""
-    return rx.text( f"Bienvenido, {LoginState.username}!")    
+    return rx.text( f"Bienvenido {LoginState.username}!")    
 
 def _time_data() -> rx.Component:
     return rx.hstack(
