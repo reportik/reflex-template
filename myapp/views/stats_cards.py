@@ -3,7 +3,6 @@ from .. import styles
 
 from reflex.components.radix.themes.base import LiteralAccentColor
 
-
 def stats_card(
     stat_name: str,
     value: int,
@@ -121,6 +120,21 @@ def stats_cards() -> rx.Component:
                     image="im5.png",
                 ),
                
+            ),
+    
+            rx.chakra.hstack(
+                stats_image_card(         
+                    opcion_radio=" Tradicional",           
+                    image="IMG6.jpg",
+                ),
+                stats_image_card(        
+                    opcion_radio=" Ripplefold",           
+                    image="IMG7.jpg",
+                ),
+                stats_image_card(         
+                    opcion_radio=" Ojillos",           
+                    image="IMG8.jpg",
+                ),              
             ),
         ),
        

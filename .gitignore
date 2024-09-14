@@ -158,6 +158,7 @@ ENV/
 MANIFEST
 __pycache__/
 __pypackages__/
+assets/external/
 build/
 caddy*
 celerybeat-schedule
