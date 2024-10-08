@@ -19,7 +19,7 @@ providers = ['python']
     cmds = ['reflex init'] # re-initialize the app with the latest template
 #[phases.chakra]
     #dependsOn = ['init'] # run after init
-    #cmds = ['reflex script keep-chakra'] 
+    cmds = ['reflex script keep-chakra'] 
 
 # export frontend phase
 [phases.export]
