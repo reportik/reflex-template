@@ -52,7 +52,18 @@ def tab_content_header() -> rx.Component:
 
 @template(route="/", title="Inicio")
 def index() -> rx.Component:
-   
+    cards_1 = [
+            {"opcion_radio": "Muro Interior", "image": "im1.png"},
+            {"opcion_radio": "Muro Exterior", "image": "im2.png"},
+            {"opcion_radio": "Techo Interior", "image": "im3.png"},
+            {"opcion_radio": "Techo Exterior", "image": "im4.png"},
+            {"opcion_radio": "Escuadra", "image": "im5.png"}
+        ]
+    cards_2 = [
+            {"opcion_radio": "Tradicional", "image": "IMG6.jpg"},
+            {"opcion_radio": "Ripplefold", "image": "IMG7.jpg"},
+            {"opcion_radio": "Ojillos", "image": "IMG8.jpg"}
+        ]
     return rx.vstack(
         UserInfo(),
         # rx.flex(
@@ -82,9 +93,28 @@ def index() -> rx.Component:
             rx.heading(f"1.- SELECCIONA EL ESPACIO DONDE UBICARÁS TU CORTINA", size="3", padding_top="0.5rem"),
 
         ),
-        stats_cards(),
         
+
+        # Llamada a la función
+        stats_cards(cards_1),
+        rx.hstack(
+
+            rx.icon_button(
+                rx.icon("square-check-big"),
+                #padding="0.5rem",
+                radius="full",
+                variant="soft",
+                color_scheme="green",
+                size="4",
+            ),
+            rx.heading(f"1.- SELECCIONA EL TIPO DE CORTINA", size="3", padding_top="0.5rem"),
+
+        ),
         
+
+        # Llamada a la función
+        stats_cards(cards_2),
+                        
         spacing="5",
         width="100%",
     )

@@ -95,56 +95,13 @@ def stats_image_card(
         width="10vw",
     )
 
-def stats_cards() -> rx.Component:
+def stats_cards(cards: list) -> rx.Component:
     return rx.grid(
         rx.chakra.radio_group(
             rx.chakra.hstack(
-                stats_image_card(          
-                    opcion_radio=" Muro Interior",           
-                    image="im1.png",
-                ),               
-                stats_image_card(         
-                    opcion_radio=" Muro Exterior",           
-                    image="im2.png",
-                ),
-                stats_image_card(        
-                    opcion_radio=" Techo Interior",           
-                    image="im3.png",
-                ),
-                stats_image_card(         
-                    opcion_radio=" Techo Exterior",           
-                    image="im4.png",
-                ),
-                stats_image_card(         
-                    opcion_radio=" Escuadra",           
-                    image="im5.png",
-                ),
-               
-            ),
-    
-            rx.chakra.hstack(
-                stats_image_card(         
-                    opcion_radio=" Tradicional",           
-                    image="IMG6.jpg",
-                ),
-                stats_image_card(        
-                    opcion_radio=" Ripplefold",           
-                    image="IMG7.jpg",
-                ),
-                stats_image_card(         
-                    opcion_radio=" Ojillos",           
-                    image="IMG8.jpg",
-                ),              
+                # Usamos un for loop para generar dinámicamente las tarjetas
+                *[stats_image_card(opcion_radio=card['opcion_radio'], image=card['image']) for card in cards],
             ),
         ),
-       
-        gap="1rem",
-        grid_template_columns=[
-            "1fr",
-            "repeat(1, 1fr)",
-            "repeat(2, 1fr)",
-            "repeat(3, 1fr)",
-            "repeat(3, 1fr)",
-        ],
         width="100%",
     )
