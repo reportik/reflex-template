@@ -91,12 +91,8 @@ def index() -> rx.Component:
                 size="4",
             ),
             rx.heading(f"1.- SELECCIONA EL ESPACIO DONDE UBICARÁS TU CORTINA", size="3", padding_top="0.5rem"),
-
         ),
-        
-
-        # Llamada a la función
-        stats_cards(cards_1),
+        stats_cards(cards_1, "r_espacio"),             
         rx.hstack(
 
             rx.icon_button(
@@ -107,13 +103,9 @@ def index() -> rx.Component:
                 color_scheme="green",
                 size="4",
             ),
-            rx.heading(f"1.- SELECCIONA EL TIPO DE CORTINA", size="3", padding_top="0.5rem"),
-
+            rx.heading(f"2.- ELIGE EL SISTEMA DE CONFECCIÓN QUE DESEAS", size="3", padding_top="0.5rem"),
         ),
-        
-
-        # Llamada a la función
-        stats_cards(cards_2),
+        stats_cards(cards_2, "r_tipo"),            
                         
         spacing="5",
         width="100%",

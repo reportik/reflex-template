@@ -79,6 +79,7 @@ def stats_card(
 def stats_image_card(
     opcion_radio: str,
     image: str,
+    #seleccionado: bool
 ) -> rx.Component:
     return rx.card(
       
@@ -91,17 +92,25 @@ def stats_image_card(
             side="top",
             pb="current",
         ),  
-        rx.chakra.radio(opcion_radio), 
-        width="10vw",
+        rx.chakra.radio(opcion_radio 
+                        #,default_checked=seleccionado
+                        ), 
+        
     )
 
-def stats_cards(cards: list) -> rx.Component:
+def stats_cards(cards: list, name: str) -> rx.Component:
     return rx.grid(
         rx.chakra.radio_group(
             rx.chakra.hstack(
                 # Usamos un for loop para generar dinámicamente las tarjetas
-                *[stats_image_card(opcion_radio=card['opcion_radio'], image=card['image']) for card in cards],
+                *[stats_image_card(opcion_radio=card['opcion_radio'], image=card['image']
+                                   #, seleccionado=card['cheked']
+                                    ) for card in cards],
             ),
+            default_value=cards[0]['opcion_radio'],
+            default_checked=True,
+            name=name,
+            id="rg_"+name
         ),
         width="100%",
     )
