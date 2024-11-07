@@ -86,8 +86,8 @@ def stats_image_card(
         rx.inset(
             rx.image(
                 src=image,
-                width="100%",
-                height="auto",
+                width="195px",
+                height="195px",
             ),
             side="top",
             pb="current",
@@ -114,3 +114,16 @@ def stats_cards(cards: list, name: str) -> rx.Component:
         ),
         width="100%",
     )
+def titulo_con_icono(titulo: str) -> rx.Component:
+    return rx.hstack(
+
+            rx.icon_button(
+                rx.icon("square-check-big"),
+                #padding="0.5rem",
+                radius="full",
+                variant="soft",
+                color_scheme="green",
+                size="4",
+            ),
+            rx.heading(titulo, size="3", padding_top="0.5rem"),
+        ),

@@ -4,6 +4,7 @@ import reflex as rx
 from .. import styles
 from ..templates import template
 from ..views.stats_cards import stats_cards
+from ..views.stats_cards import titulo_con_icono
 from ..views.charts import (
     users_chart,
     revenue_chart,
@@ -64,9 +65,27 @@ def index() -> rx.Component:
             {"opcion_radio": "Ripplefold", "image": "IMG7.jpg"},
             {"opcion_radio": "Ojillos", "image": "IMG8.jpg"}
         ]
+    cards_3 = [
+            {"opcion_radio": "Tradicional", "image": "IMG6.jpg"},
+            {"opcion_radio": "Ripplefold", "image": "IMG7.jpg"},
+            {"opcion_radio": "Ojillos", "image": "IMG8.jpg"}
+        ]
     return rx.vstack(
         UserInfo(),
-        # rx.flex(
+        # Aqui puede ir el codigo NUM_1
+        titulo_con_icono(f"1.- SELECCIONA EL ESPACIO DONDE UBICARÁS TU CORTINA"),
+        stats_cards(cards_1, "r_espacio"),             
+        titulo_con_icono(f"2.- ELIGE EL SISTEMA DE CONFECCIÓN QUE DESEAS"),
+        stats_cards(cards_2, "r_tipo"),            
+        titulo_con_icono(f"3.- ELIGE ALGO MAS"),
+        stats_cards(cards_3, "radiobtn"),            
+                        
+        spacing="5",
+        width="100%",
+    )
+
+# codigo NUM_1
+# rx.flex(
              
         #     rx.flex(
         #         notification("user", "cyan", 12),
@@ -80,33 +99,3 @@ def index() -> rx.Component:
         #     align="center",
         #     width="100%",
         # ),
-        rx.hstack(
-
-            rx.icon_button(
-                rx.icon("square-check-big"),
-                #padding="0.5rem",
-                radius="full",
-                variant="soft",
-                color_scheme="green",
-                size="4",
-            ),
-            rx.heading(f"1.- SELECCIONA EL ESPACIO DONDE UBICARÁS TU CORTINA", size="3", padding_top="0.5rem"),
-        ),
-        stats_cards(cards_1, "r_espacio"),             
-        rx.hstack(
-
-            rx.icon_button(
-                rx.icon("square-check-big"),
-                #padding="0.5rem",
-                radius="full",
-                variant="soft",
-                color_scheme="green",
-                size="4",
-            ),
-            rx.heading(f"2.- ELIGE EL SISTEMA DE CONFECCIÓN QUE DESEAS", size="3", padding_top="0.5rem"),
-        ),
-        stats_cards(cards_2, "r_tipo"),            
-                        
-        spacing="5",
-        width="100%",
-    )

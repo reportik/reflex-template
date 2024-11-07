@@ -94,18 +94,13 @@ def template(
                     max_width=[
                         "100%",
                         "100%",
-                        "100%",
-                        "100%",
-                        "100%",
                         styles.max_width,
                     ],
                 ),
                 flex_direction=[
                     "column",
                     "column",
-                    "column",
-                    "column",
-                    "column",
+                   
                     "row",
                 ],
                 width="100%",
