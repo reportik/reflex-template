@@ -114,7 +114,8 @@ def stats_cards(cards: list, name: str) -> rx.Component:
         ),
         width="100%",
     )
-def titulo_con_icono(titulo: str) -> rx.Component:
+    
+def titulo_con_icono(titulo: str, subtitulo: str) -> rx.Component:
     return rx.hstack(
 
             rx.icon_button(
@@ -125,5 +126,44 @@ def titulo_con_icono(titulo: str) -> rx.Component:
                 color_scheme="green",
                 size="4",
             ),
-            rx.heading(titulo, size="3", padding_top="0.5rem"),
+            rx.vstack(
+                rx.heading(titulo, size="3", padding_top="0.5rem"),
+                rx.cond(subtitulo != "",
+                        rx.blockquote(subtitulo, size="2")
+                )
+            )
+            
+        )
+
+def check_image_card(
+    opcion_checkbox: str,
+    image: str
+) -> rx.Component:
+    return rx.card(
+        rx.inset(
+            rx.image(
+                src=image,
+                width="195px",
+                height="195px",
+            ),
+            side="top",
+            pb="current",
         ),
+        rx.checkbox(opcion_checkbox)
+    )
+
+def stats_cards2(cards: list, name: str) -> rx.Component:
+    return rx.grid(
+        rx.chakra.checkbox_group(
+            rx.chakra.hstack(
+                # Usamos un for loop para generar dinámicamente las tarjetas
+                *[check_image_card(card["opcion_check"], card["image"]
+                                   #, seleccionado=card['cheked']
+                                    ) for card in cards],
+            ),
+            default_value=cards[0]['opcion_check'],
+            name=name,
+            id="rg_"+name
+        ),
+        width="100%",
+    )
