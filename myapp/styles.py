@@ -91,6 +91,7 @@ color_picker_style = {
 
 
 base_stylesheets = [
+    'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'
     "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
     "styles.css",
 ]

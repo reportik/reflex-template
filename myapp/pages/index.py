@@ -41,7 +41,6 @@ def _time_data() -> rx.Component:
         display=["none", "none", "flex"],
     )
 
-
 def tab_content_header() -> rx.Component:
     return rx.hstack(
         _time_data(),
@@ -50,8 +49,40 @@ def tab_content_header() -> rx.Component:
         width="100%",
         spacing="4",
     )
+def tarjeta(image_url, title, description) -> rx.Component:
+        return rx.card(
+            rx.flex(
+                rx.box(
+                    rx.image(src=image_url, style={"width": "100%", "border-radius": "8px 8px 0 0"}),
+                    rx.box(
+                        rx.heading(title, style={"font-size": "1.5em", "margin": "16px 0 8px"}),
+                        rx.text(description, style={"font-size": "1em", "color": "#555"}),
+                        style={"padding": "16px"}
+                    )
+                ),
+                spacing="2",
+            ),
+            as_child=True,
+            spacing="2",
+        )
 
-
+def select_intro():
+    return rx.center(
+        rx.select(
+            color_scheme='green',
+            radius='large',
+            size='3',
+            items=ProfileState.select_tela_items,
+            #value="pear",
+            #default_value="Bruno Coel Vol 1 Color 2 Hueso",
+            on_change=ProfileState.select_elige_tela,
+            spacing="2",
+            class_name="form-select"
+        ),
+        tarjeta("ruta-de-tu-imagen.jpg", ProfileState.select_tela_value, "Esta es una breve descripción de la imagen."),
+        spacing="2",
+    
+    )
 @template(route="/", title="Inicio")
 def index() -> rx.Component:
     cards_1 = [
@@ -67,10 +98,14 @@ def index() -> rx.Component:
             {"opcion_radio": "Ojillos", "image": "IMG8.jpg"}
         ]
     cards_3 = [
-            {"opcion_check": "Blackout", "image": "img9.PNG"},
-            {"opcion_check": "Sheer", "image": "img10.PNG"},
-            {"opcion_check": "Decorativa", "image": "img11.PNG"}
+            {"opcion_radio": "Blackout", "image": "img9.PNG"},
+            {"opcion_radio": "Sheer", "image": "img10.PNG"},
+            {"opcion_radio": "Decorativa", "image": "img11.PNG"}
         ]
+    #Aqui llenar las listas por cada tipo de tela, que serian las de card_3
+    #los datos ver si los podemos traer de odoo. la idea es invocar una funcion de ProfileState
+    #ver el tema de las imagenes
+    
     return rx.vstack(
         UserInfo(),
         # Aqui puede ir el codigo NUM_1
@@ -80,10 +115,12 @@ def index() -> rx.Component:
         stats_cards(cards_2, "radio_sistema_confeccion"),            
         titulo_con_icono(f"3.- ELIGE EL TIPO DE TELA EN QUE DESEES CONFECCIONAR TU CORTINA",
                          f"PUEDES SELECCIONAR DE 1 A 2 OPCIONES, SEGÚN LAS CAPAS QUE LLEVARÁ TU CORTINA"),
-        stats_cards2(cards_3, "radio_tipo_tela"),            
-                    
+        stats_cards(cards_3, "radio_tipo_tela"), 
+        titulo_con_icono(f"4.- ELIGE LA TELA QUE DESEES UTILIZAR", f""),
+        select_intro(), 
         spacing="5",
         width="100%",
+        
     )
 
 # codigo NUM_1

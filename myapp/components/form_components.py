@@ -6,7 +6,7 @@ def field_form_component(label:str, placeholder: str, name_var:str,
                 rx.flex(
                     rx.form.label(label),
                     rx.form.control(
-                        rx.input.input(
+                        rx.input(
                             placeholder=placeholder,
                             on_change=on_change_function,
                             name=name_var,
@@ -34,7 +34,7 @@ def field_form_component_general(label: str, placeholder: str, message_validate:
                 rx.flex(
                     rx.form.label(label),
                     rx.form.control(
-                        rx.input.input(
+                        rx.input(
                             placeholder=placeholder,
                             on_change=on_change_function,
                             name=name,

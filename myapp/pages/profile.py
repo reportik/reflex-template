@@ -5,15 +5,20 @@ from ..components.profile_input import profile_input
 
 import reflex as rx
 
-
 class Profile(rx.Base):
     name: str = ""
     email: str = ""
     notifications: bool = True
+    
+def odoo_tela_items() -> list[str] :
+    return ["uno", "dos", "tres"]
 
 class ProfileState(rx.State):
     profile: Profile = Profile(name="Invitado", email="", notifications=True)
-
+    radio_tipo_tela_value: str =""
+    select_tela_items: list[str] = odoo_tela_items() #Aqui hay que cargar la lista de telas Blackout de Odoo 
+    select_tela_value: str = select_tela_items[0]
+    
     def handle_submit(self, form_data: dict):
         self.profile = Profile(**form_data)
         return rx.toast.success(
@@ -23,7 +28,21 @@ class ProfileState(rx.State):
     def toggle_notifications(self):
         self.profile.notifications = not self.profile.notifications
 
-    
+    def select_elige_tela(self, value: str):
+        self.select_tela_value = value
+    def radio_elige_tipo_tela(self, value: str):
+        print(f"Radio button seleccionado: {value}")
+        #print(f"Radio button seleccionado ID: {id}")
+        #if id == 'rg_radio_tipo_tela':
+        self.radio_tipo_tela_value = value
+        match value:
+            case 'Blackout':
+                self.select_tela_items = ['Blackout 1', 'Blackout 2']
+            case 'Sheer':
+                self.select_tela_items = ['Sheer 1', 'Sheer 2']
+            case 'Decorativa':
+                self.select_tela_items = ['Decorativa 1', 'Decorativa 2']
+                    
 # @template(route="/profile", title="Profile")
 # def profile() -> rx.Component:
 #     """The profile page.

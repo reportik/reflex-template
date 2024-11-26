@@ -96,7 +96,7 @@ def login_page() -> rx.Component:
                     rx.form.submit(
                             rx.cond(
                                 LoginState.loader,
-                                rx.chakra.spinner(color="red", size="xs"),
+                                rx.spinner(size="2"),
                                 rx.button(
                                     "Iniciar sesión",
                                     disabled=LoginState.validate_fields,

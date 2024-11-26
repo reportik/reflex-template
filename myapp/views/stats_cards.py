@@ -1,6 +1,6 @@
 import reflex as rx
 from .. import styles
-
+from myapp.pages.profile import ProfileState
 from reflex.components.radix.themes.base import LiteralAccentColor
 
 def stats_card(
@@ -110,7 +110,8 @@ def stats_cards(cards: list, name: str) -> rx.Component:
             default_value=cards[0]['opcion_radio'],
             default_checked=True,
             name=name,
-            id="rg_"+name
+            id="rg_"+name,
+            on_change=ProfileState.radio_elige_tipo_tela
         ),
         width="100%",
     )
