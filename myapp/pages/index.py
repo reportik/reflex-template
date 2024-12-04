@@ -23,8 +23,6 @@ from .login_page import LoginState
 
 import datetime
 
-#from ..auth import authenticate_user
-
 def UserInfo()-> rx.Component:
     user = ""
     return rx.text( f"Bienvenido {LoginState.username}!")    
@@ -106,6 +104,7 @@ def index() -> rx.Component:
     #los datos ver si los podemos traer de odoo. la idea es invocar una funcion de ProfileState
     #ver el tema de las imagenes
     
+        
     return rx.vstack(
         UserInfo(),
         # Aqui puede ir el codigo NUM_1
@@ -118,6 +117,8 @@ def index() -> rx.Component:
         stats_cards(cards_3, "radio_tipo_tela"), 
         titulo_con_icono(f"4.- ELIGE LA TELA QUE DESEES UTILIZAR", f""),
         select_intro(), 
+        
+    
         spacing="5",
         width="100%",
         

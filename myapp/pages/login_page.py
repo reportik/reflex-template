@@ -6,8 +6,7 @@ from ..components.form_components import field_form_component,field_form_compone
 from ..components.notify_component import notify_component
 from ..pages.profile import ProfileState
 import xmlrpc.client
-from ..key import ADMIN_USER # 
-from ..key import ADMIN_PASS # 
+from ..key import *
 
 class LoginState(rx.State):
     username: str = ''
@@ -18,8 +17,8 @@ class LoginState(rx.State):
     
     def auth_user(self, data: dict):
         try:
-            url = 'https://comeritk-odoo-dev-14432757.dev.odoo.com'
-            db = 'comeritk-odoo-dev-14432757'
+            url = ODOO_URL
+            db = ODOO_DB
             
             admin_username = ADMIN_USER
             admin_password = ADMIN_PASS                

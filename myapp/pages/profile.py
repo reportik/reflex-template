@@ -2,7 +2,9 @@
 
 from ..templates import template
 from ..components.profile_input import profile_input
-
+from ..key import *
+#from ..auth import authenticate_user
+from ..model.o_products import OProducts
 import reflex as rx
 
 class Profile(rx.Base):
@@ -11,7 +13,17 @@ class Profile(rx.Base):
     notifications: bool = True
     
 def odoo_tela_items() -> list[str] :
-    return ["uno", "dos", "tres"]
+    # Ejemplo de uso
+    url = ODOO_URL
+    db = ODOO_DB
+    
+    username = ADMIN_USER
+    password = ADMIN_PASS  
+
+    oproducts = OProducts(url, db, username, password)
+    productos_filtrados = oproducts.get_products_by_category('CORTINAS/SHADES/TELAS')
+
+    return [producto['name'] for producto in productos_filtrados]
 
 class ProfileState(rx.State):
     profile: Profile = Profile(name="Invitado", email="", notifications=True)
