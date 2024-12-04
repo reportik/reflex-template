@@ -47,7 +47,6 @@ class OProducts:
             {'fields': ['name', 'public_categ_ids', 'image_1920']}#, 'limit': 20}  # 'limit' para restringir a 20 registros
         )
 
-        
         category_paths = {cat_id: self.build_path(cat_id) for cat_id in self.category_dict}
         filtered_products = []
 
@@ -62,9 +61,12 @@ class OProducts:
                         'category': path,
                         'image': product['image_1920']
                     })
+                    uno = True
+                    if (uno):
+                        print(f"Nombre: {product['name']}")
+                        print(f"categoria: {path}")
+                        print(f"imagen: {product['image_1920']}")
+                        uno = False
                     break
                 
-                print(f"Nombre: {product['name']}")
-                print(f"categoria: {path}")
-            print( len(filtered_products))
         return filtered_products

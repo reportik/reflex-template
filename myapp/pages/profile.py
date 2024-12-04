@@ -6,13 +6,13 @@ from ..key import *
 #from ..auth import authenticate_user
 from ..model.o_products import OProducts
 import reflex as rx
-
+from . import * 
 class Profile(rx.Base):
     name: str = ""
     email: str = ""
     notifications: bool = True
     
-def odoo_tela_items() -> list[str] :
+def odoo_tela_items(path: str) -> list[str] :
     # Ejemplo de uso
     url = ODOO_URL
     db = ODOO_DB
@@ -21,15 +21,21 @@ def odoo_tela_items() -> list[str] :
     password = ADMIN_PASS  
 
     oproducts = OProducts(url, db, username, password)
-    productos_filtrados = oproducts.get_products_by_category('CORTINAS/SHADES/TELAS')
-
+    productos_filtrados = oproducts.get_products_by_category('CORTINAS/SHADES/TELAS/'+path)
+    return productos_filtrados
+    #ProfileState.products = productos_filtrados
+def getNombresTelas(productos_filtrados: list[OProducts]):
     return [producto['name'] for producto in productos_filtrados]
 
 class ProfileState(rx.State):
+    search_list = 'BLACKOUT'
+    products = odoo_tela_items(search_list)
     profile: Profile = Profile(name="Invitado", email="", notifications=True)
     radio_tipo_tela_value: str =""
-    select_tela_items: list[str] = odoo_tela_items() #Aqui hay que cargar la lista de telas Blackout de Odoo 
-    select_tela_value: str = select_tela_items[0]
+    select_tela_items: list[str] = getNombresTelas(products) #Aqui hay que cargar la lista de telas Blackout de Odoo 
+    select_tela_value: str = products[0]['name']
+    card_image_base64: str = products[0]['image']
+    
     
     def handle_submit(self, form_data: dict):
         self.profile = Profile(**form_data)
@@ -42,18 +48,30 @@ class ProfileState(rx.State):
 
     def select_elige_tela(self, value: str):
         self.select_tela_value = value
+        # Busca el producto con el nombre igual al valor seleccionado
+        for product in self.products:
+            if product['name'] == value:
+                self.card_image_base64 = product['image']
+                break  # Termina la búsqueda una vez encontrado el producto
+        else:
+            # Si no se encuentra el producto, se asigna None o un valor por defecto
+            self.card_image_base64 = None
+        
+        
     def radio_elige_tipo_tela(self, value: str):
         print(f"Radio button seleccionado: {value}")
         #print(f"Radio button seleccionado ID: {id}")
-        #if id == 'rg_radio_tipo_tela':
+        #if id == 'rg_radio_tipo_tela':        
         self.radio_tipo_tela_value = value
         match value:
-            case 'Blackout':
-                self.select_tela_items = ['Blackout 1', 'Blackout 2']
+            case 'Blackout':                
+                self.search_list = 'BLACKOUT'                
             case 'Sheer':
-                self.select_tela_items = ['Sheer 1', 'Sheer 2']
-            case 'Decorativa':
-                self.select_tela_items = ['Decorativa 1', 'Decorativa 2']
+                self.search_list = 'SHEER'
+                
+        self.select_tela_items = odoo_tela_items(self.search_list)
+        self.select_tela_value = self.products[0]['name']
+        self.card_image_base64 = self.products[0]['image']
                     
 # @template(route="/profile", title="Profile")
 # def profile() -> rx.Component:

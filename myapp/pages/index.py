@@ -47,25 +47,29 @@ def tab_content_header() -> rx.Component:
         width="100%",
         spacing="4",
     )
-def tarjeta(image_url, title, description) -> rx.Component:
-        return rx.card(
-            rx.flex(
+def tarjeta(image_base64, title, description) -> rx.Component:
+    # Crear la data URI (asumiendo una imagen PNG, puedes cambiar 'png' según corresponda)
+    image_data_uri = f"data:image/png;base64,{image_base64}"
+    
+    return rx.card(
+        rx.flex(
+            rx.box(
+                rx.image(src=image_data_uri, style={"width": "30%", "height": "30%", "border-radius": "8px 8px 0 0"}),
                 rx.box(
-                    rx.image(src=image_url, style={"width": "100%", "border-radius": "8px 8px 0 0"}),
-                    rx.box(
-                        rx.heading(title, style={"font-size": "1.5em", "margin": "16px 0 8px"}),
-                        rx.text(description, style={"font-size": "1em", "color": "#555"}),
-                        style={"padding": "16px"}
-                    )
-                ),
-                spacing="2",
+                    rx.heading(title, style={"font-size": "1.5em", "margin": "16px 0 8px"}),
+                    # rx.text(description, style={"font-size": "1em", "color": "#555"}),
+                    style={"padding": "16px"}
+                )
             ),
-            as_child=True,
             spacing="2",
-        )
-
+        ),
+        as_child=True,
+        spacing="2",
+    )
 def select_intro():
     return rx.center(
+        
+        rx.html('<label  class="form-label">Selecciona tu Tela:</label>'),
         rx.select(
             color_scheme='green',
             radius='large',
@@ -77,7 +81,8 @@ def select_intro():
             spacing="2",
             class_name="form-select"
         ),
-        tarjeta("ruta-de-tu-imagen.jpg", ProfileState.select_tela_value, "Esta es una breve descripción de la imagen."),
+        
+        tarjeta(ProfileState.card_image_base64, ProfileState.select_tela_value, ""),
         spacing="2",
     
     )
@@ -97,8 +102,8 @@ def index() -> rx.Component:
         ]
     cards_3 = [
             {"opcion_radio": "Blackout", "image": "img9.PNG"},
-            {"opcion_radio": "Sheer", "image": "img10.PNG"},
-            {"opcion_radio": "Decorativa", "image": "img11.PNG"}
+            {"opcion_radio": "Sheer", "image": "img10.PNG"}
+            #{"opcion_radio": "Decorativa", "image": "img11.PNG"}
         ]
     #Aqui llenar las listas por cada tipo de tela, que serian las de card_3
     #los datos ver si los podemos traer de odoo. la idea es invocar una funcion de ProfileState
