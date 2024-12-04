@@ -71,10 +71,12 @@ def select_intro():
         
         rx.html('<label  class="form-label">Selecciona tu Tela:</label>'),
         rx.select(
+            
             color_scheme='green',
             radius='large',
             size='3',
             items=ProfileState.select_tela_items,
+            id='sel_tela',
             #value="pear",
             #default_value="Bruno Coel Vol 1 Color 2 Hueso",
             on_change=ProfileState.select_elige_tela,

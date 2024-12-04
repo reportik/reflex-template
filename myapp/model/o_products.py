@@ -61,12 +61,60 @@ class OProducts:
                         'category': path,
                         'image': product['image_1920']
                     })
-                    uno = True
-                    if (uno):
-                        print(f"Nombre: {product['name']}")
-                        print(f"categoria: {path}")
-                        print(f"imagen: {product['image_1920']}")
-                        uno = False
-                    break
+                    # uno = True
+                    # if (uno):
+                    #     print(f"Nombre: {product['name']}")
+                    #     print(f"categoria: {path}")
+                    #     print(f"imagen: {product['image_1920']}")
+                    #     uno = False
+                #break
                 
         return filtered_products
+    
+    def get_products_telas(self):
+        # products = self.models.execute_kw(self.db, self.uid, self.password,
+        #                                   'product.template', 'search_read',
+        #                                   [[]],
+        #                                   {'fields': ['name', 'public_categ_ids', 'image_1920']})
+        # Obtener 20 productos
+        products = self.models.execute_kw(self.db, self.uid, self.password,
+            'product.template', 'search_read',
+            [[]],  # Filtro vacío para obtener todos los productos
+            {'fields': ['name', 'public_categ_ids', 'image_1920']}#, 'limit': 20}  # 'limit' para restringir a 20 registros
+        )
+
+        category_paths = {cat_id: self.build_path(cat_id) for cat_id in self.category_dict}
+        filtered_blackout = []
+        filtered_sheer = []
+        rs = []
+
+        for product in products:
+            categ_ids = product['public_categ_ids']
+            category_names = [category_paths[cid] for cid in categ_ids if cid in category_paths]
+
+            for path in category_names:
+                if 'CORTINAS/SHADES/TELAS/BLACKOUT' in path:
+                    filtered_blackout.append({
+                        'name': product['name'],
+                        'category': path,
+                        'image': product['image_1920']
+                    })
+                if 'CORTINAS/SHADES/TELAS/SHEER ELEGANCE' in path:
+                    filtered_sheer.append({
+                        'name': product['name'],
+                        'category': path,
+                        'image': product['image_1920']
+                    })
+                    # uno = True
+                    # if (uno):
+                    #     print(f"Nombre: {product['name']}")
+                    #     print(f"categoria: {path}")
+                    #     print(f"imagen: {product['image_1920']}")
+                    #     uno = False
+                #break
+        # Crear un diccionario para almacenar las dos listas
+        rs = {
+            'blackout': filtered_blackout,
+            'sheer_elegance': filtered_sheer
+        }
+        return rs
