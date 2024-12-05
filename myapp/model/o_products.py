@@ -99,7 +99,7 @@ class OProducts:
                         'category': path,
                         'image': product['image_1920']
                     })
-                if 'CORTINAS/SHADES/TELAS/SHEER ELEGANCE' in path:
+                if 'CORTINAS/SHADES/TELAS/SHEER' in path:
                     filtered_sheer.append({
                         'name': product['name'],
                         'category': path,

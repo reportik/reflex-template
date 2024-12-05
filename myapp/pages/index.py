@@ -68,21 +68,40 @@ def tarjeta(image_base64, title, description) -> rx.Component:
     )
 def select_intro():
     return rx.center(
-        
-        rx.html('<label  class="form-label">Selecciona tu Tela:</label>'),
-        rx.select(
-            
-            color_scheme='green',
-            radius='large',
-            size='3',
-            items=ProfileState.select_tela_items,
-            id='sel_tela',
-            #value="pear",
-            #default_value="Bruno Coel Vol 1 Color 2 Hueso",
-            on_change=ProfileState.select_elige_tela,
-            spacing="2",
-            class_name="form-select"
+        rx.vstack(
+            rx.chakra.form_label("Selecciona tu Tela "+ ProfileState.radio_tipo_tela_value)
+            ,rx.cond(
+                ProfileState.sel_mostrar_bo,
+                rx.select(
+                
+                    color_scheme='green',
+                    radius='large',
+                    size='3',
+                    items=ProfileState.select_tela_items_blackout,
+                    id='sel_tela_bo',
+                    value="BO 500M ALABASTER",
+                    #default_value="Bruno Coel Vol 1 Color 2 Hueso",
+                    on_change=ProfileState.select_elige_tela,
+                    spacing="2",
+                    class_name="form-select"
+                
+                ),
+                rx.select(
+                
+                    color_scheme='green',
+                    radius='large',
+                    size='3',
+                    items=ProfileState.select_tela_items_sheer,
+                    id='sel_tela',
+                    #value="pear",
+                    value="DUO BO SERENITY BLACK 2.85M",
+                    on_change=ProfileState.select_elige_tela,
+                    spacing="2",
+                    class_name="form-select"
+                )
+            )
         ),
+        
         
         tarjeta(ProfileState.card_image_base64, ProfileState.select_tela_value, ""),
         spacing="2",

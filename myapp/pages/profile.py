@@ -33,13 +33,18 @@ class ProfileState(rx.State):
     
     products_blackout = products_list['blackout']
     products_sheer = products_list['sheer_elegance']
-    products = products_blackout
+    #products = products_blackout
     
     profile: Profile = Profile(name="Invitado", email="", notifications=True)
     radio_tipo_tela_value: str =""
-    select_tela_items: list[str] = getNombresTelas(products) #Aqui hay que cargar la lista de telas Blackout de Odoo 
-    select_tela_value: str = products[0]['name']
-    card_image_base64: str = products[0]['image']
+    select_tela_items_blackout: list[str] = getNombresTelas(products_blackout) #Aqui hay que cargar la lista de telas Blackout de Odoo 
+    select_tela_items_sheer: list[str] = getNombresTelas(products_sheer) #Aqui hay que cargar la lista de telas Blackout de Odoo 
+    select_tela_items: list[str] = select_tela_items_blackout 
+    sel_mostrar_bo : bool = True
+    sel_mostrar_sheer : bool = False
+    
+    select_tela_value: str = products_blackout[0]['name']
+    card_image_base64: str = products_blackout[0]['image']
     
     def handle_submit(self, form_data: dict):
         self.profile = Profile(**form_data)
@@ -52,34 +57,45 @@ class ProfileState(rx.State):
 
     def select_elige_tela(self, value: str):
         self.select_tela_value = value
+        lista: str = 'blackout'
+        if self.radio_tipo_tela_value == 'Blackout':
+            lista = 'blackout'
+        else:
+            lista = 'sheer_elegance'
+            
         # Busca el producto con el nombre igual al valor seleccionado
-        for product in self.products:
+        for product in self.products_list[lista]:
             if product['name'] == value:
                 self.card_image_base64 = product['image']
                 break  # Termina la búsqueda una vez encontrado el producto
-        else:
-            # Si no se encuentra el producto, se asigna None o un valor por defecto
-            self.card_image_base64 = None
-    def update_select_value(new_value): # Aquí actualizas el valor del select 
-        rx.get_component_by_id('sel_tela').set_value(new_value) 
-        rx.get_component_by_id('sel_tela').update()  
+
              
     def radio_elige_tipo_tela(self, value: str):
         print(f"Radio button seleccionado: {value}")
         #print(f"Radio button seleccionado ID: {id}")
         #if id == 'rg_radio_tipo_tela':        
         self.radio_tipo_tela_value = value
-        match value:
-            case 'Blackout':                
-                self.products = self.products_blackout                
-                ProfileState.update_select_value("BO 500M ALABASTER")
-            case 'Sheer':
-                self.products = self.products_sheer
-                ProfileState.update_select_value("DUO BO SERENITY BLACK 2.85M ")
+        if value == 'Blackout':
+            #rx.get_component_by_id('sel_tela').set_items(self.products_blackout)
+            #self.select_tela_items = self.select_tela_items_blackout
+            #self.products = self.products_blackout
+            self.sel_mostrar_bo = True
+        else:
+            self.sel_mostrar_bo = False
+            #self.select_tela_items = self.select_tela_items_sheer
+            #self.products = self.products_sheer               
+        # match value:
+        #     case 'Blackout':                
+        #         self.select_tela_items = self.select_tela_items_blackout
+        #        
+        #     case 'Sheer':
+        #         self.products = self.products_sheer
+        #         self.select_tela_items = self.select_tela_items_sheer
                 
-        self.select_tela_items = getNombresTelas(self.products)
-        self.select_tela_value = self.products[0]['name']
-        self.card_image_base64 = self.products[0]['image']
+                
+        #self.select_tela_items = getNombresTelas(self.products)
+        #self.select_tela_value = self.products[0]['name']
+        #self.card_image_base64 = self.products[0]['image']
                     
 # @template(route="/profile", title="Profile")
 # def profile() -> rx.Component:
