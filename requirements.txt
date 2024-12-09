@@ -1,8 +1,9 @@
-reflex==0.5.0
+reflex==0.6.5
 pydevd-odoo
-openai
-langchain
+#openai
+#langchain
 python-environ
 wheel
 pandas
 firebase_admin
+reflex-chakra
